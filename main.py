@@ -1,11 +1,12 @@
 import os
 import time
 from datetime import datetime
+from typing import Dict, List
 
 import requests
 
 
-def fetch_latest_news(session: requests.Session) -> list[dict]:
+def fetch_latest_news(session: requests.Session) -> List[Dict]:
     url = "https://www.nhkg.tp.edu.tw/nss/site/main/storage/5a9759adef37531ea27bf1b0/y635Ty46272/find"
     now_ms = int(time.time() * 1000)
     one_day_ms = 24 * 60 * 60 * 1000
@@ -42,7 +43,7 @@ def fetch_latest_news(session: requests.Session) -> list[dict]:
     return data.get("data", {}).get("result", [])
 
 
-def build_summary(items: list[dict]) -> str:
+def build_summary(items: List[Dict]) -> str:
     if not items:
         return "臺北市立南海實驗幼兒園：目前沒有最新消息。"
 
